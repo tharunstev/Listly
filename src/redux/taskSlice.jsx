@@ -1,12 +1,10 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-
 export const getTasks = createAsyncThunk("tasks/getTasks", async () => {
   const response = await axios.get("https://dummyjson.com/todos");
   return response.data.todos;
 });
-
 
 export const addTask = createAsyncThunk("tasks/addTask", async (newTask) => {
   const response = await axios.post("https://dummyjson.com/todo/add", newTask, {
@@ -15,24 +13,25 @@ export const addTask = createAsyncThunk("tasks/addTask", async (newTask) => {
   return response.data;
 });
 
-
-export const deleteTask = createAsyncThunk("tasks/deleteTask", async (taskId) => {
-  await axios.delete(`https://dummyjson.com/todo/${taskId}`);
-  return taskId;
-});
-
+export const deleteTask = createAsyncThunk(
+  "tasks/deleteTask",
+  async (taskId) => {
+    // await axios.delete(`https://dummyjson.com/todo/${taskId}`);
+    return taskId;
+  }
+);
 
 export const updateTask = createAsyncThunk(
   "tasks/updateTask",
   async ({ taskId, completed, todo }) => {
-    const response = await axios.put(`https://dummyjson.com/todos/${taskId}`, {
-      completed,
-      todo, 
-    });
-    return response.data;
+    // const response = await axios.put(`https://dummyjson.com/todos/${taskId}`, {
+    //   completed,
+    //   todo,
+    // });
+    // console.log(response.data, "response");
+    return { id: taskId, todo: todo, completed: completed };
   }
 );
-
 
 const taskSlice = createSlice({
   name: "tasks",
