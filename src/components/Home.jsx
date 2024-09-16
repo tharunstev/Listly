@@ -142,7 +142,7 @@ const Home = ({ input }) => {
   const handleMarkAsDone = (taskId) => {
     dispatch(updateTask({ taskId, completed: true }))
       .then(() => {
-        setSnackbarMessage("Well Done , You Did It ");
+        setSnackbarMessage("Well Done, You Did It!");
         setSnackbarOpen(true);
       })
       .catch(() => {
@@ -150,7 +150,7 @@ const Home = ({ input }) => {
         setSnackbarOpen(true);
       });
   };
-
+  
   const handleEditTask = (taskId, updatedTodo) => {
     dispatch(
       updateTask({
@@ -224,14 +224,14 @@ const Home = ({ input }) => {
                 {task.todo}
               </h1>
               <div className="task-buttons">
-                {!task.completed && (
+                {/* {!task.completed && (
                   <WhiteButton
                     variant="outlined"
                     onClick={() => handleMarkAsDone(task.id)}
                   >
-                    Done
+                    
                   </WhiteButton>
-                )}
+                )} */}
                 <WhiteButton
                   variant="outlined"
                   onClick={() => openEditDialogHandler(task)}
